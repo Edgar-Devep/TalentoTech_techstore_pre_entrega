@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+.p-informacion {
+  @apply text-xs text-gray-400
+}
+
+.p-informacion-ruta {
+  @apply md:text-xl text-gray-400
+}

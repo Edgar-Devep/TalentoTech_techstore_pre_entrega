@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "nombre": "Monitor Gamer",
+    "precio": 85000,
+    "stock": 22,
+    "enOferta": true,
+    "imagen": "/images/monitor.jpg"
+  },
+  {
+    "id": 2,
+    "nombre": "Teclado Tradicional",
+    "precio": 33500,
+    "stock": 2,
+    "imagen": "/images/teclado.jpg"
+  },
+  {
+    "id": 3,
+    "nombre": "Mouse vertical",
+    "precio": 18000,
+    "stock": 2,
+    "enOferta": true,
+    "imagen": "/images/mouse.jpg"
+  },
+  {
+    "id": 4,
+    "nombre": "Laptop HP",
+    "precio": 300000,
+    "stock": 15,
+    "imagen": "/images/laptop.jpg"
+  },
+  {
+    "id": 5,
+    "nombre": "Camara Cannon",
+    "precio": 85000,
+    "stock": 30,
+    "enOferta": true,
+    "imagen": "/images/camara_cannon.jpg"
+  },
+  {
+    "id": 6,
+    "nombre": "Auriculares Inalambricos Sony",
+    "precio": 45000,
+    "stock": 5,
+    "imagen": "/images/auriculares.jpg"
+  }
+]
