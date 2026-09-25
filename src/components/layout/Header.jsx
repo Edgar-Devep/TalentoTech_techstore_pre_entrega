@@ -2,6 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 
 const Header = () => {
   const getNavClass = ({isActive}) => `px-4 md:text-lg ${isActive ? 'text-blue-500 font-extrabold' : 'text-gray-400'}`
+  const getNavClassCar = ({isActive}) => `flex items-center rounded-full p-0.5 md:p-1 ${isActive ? 'bg-blue-500 ' : 'bg-gray-400'}`
   return (
     <header className="bg-black/70 pt-4 rounded-b-2xl">
       <div className="flex justify-center items-center font-extrabold text-blue-500 text-2xl md:text-4xl gap-3">
@@ -14,7 +15,7 @@ const Header = () => {
         <NavLink to='/productos' className={getNavClass}>Productos</NavLink>
         <NavLink to='/ofertas' className={getNavClass}>Ofertas</NavLink>
         <NavLink to='/contactos' className={getNavClass}>Contactos</NavLink>
-        <NavLink to='/carrito' className= "bg-blue-500 rounded-full p-0.5">🛒</NavLink>
+        <NavLink to='/carrito' className= {getNavClassCar}>🛒</NavLink>
       </nav>
     </header>    
   )

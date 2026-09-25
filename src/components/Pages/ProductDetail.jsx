@@ -1,7 +1,7 @@
 const ProductDetail = ({ nombre, imagen, precio, stock, enOferta} ) => {
 
   return (
-    <div className="flex flex-col items-center p-6 text-center">
+    <div className="flex flex-col items-center justify-center max-w-md mx-auto mt-8 p-6 bg-slate-800 rounded-lg ">
       <img
         src={imagen}
         alt={nombre}

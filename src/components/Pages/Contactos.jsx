@@ -1,6 +1,6 @@
 const Contactos = () => {
   return (
-    <div className="min-h-[70vh] flex flex-col text-center justify-center items-center space-y-4 py-4">
+    <div className="flex flex-col text-center my-30 space-y-14 ">
       <div className="break-all">
         <h4 className="font-bold mb-2 text-lg md:text-3xl text-blue-500">Contacto</h4>
         <p className="p-informacion-ruta">contacto@techstore.com</p>
