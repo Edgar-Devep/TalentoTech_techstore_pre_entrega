@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
 const Products = ({ id, nombre, imagen }) => {
+ 
   return (
     <div className="flex flex-col gap-4 w-full bg-slate-800 rounded-lg p-6 text-center">
       <Link to={`/productos/${id}`}>
