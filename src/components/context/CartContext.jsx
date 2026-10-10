@@ -31,11 +31,14 @@ const CartProvider = ({ children }) => {
     return cart.reduce((acc, item) => acc + item.precio * item.quantity, 0);
   };
 
-  
+  const getCantidadActual = (productId) => {
+    const item = cart.find(item => item.id === productId);
+    return item ? item.cantidad : 0;
+};
 
   return (
     <CartContext.Provider
-      value={{ cart, addToCart, clearCart, getCartQuantity, getCartTotal }}
+      value={{ cart, addToCart, clearCart, getCartQuantity, getCartTotal, getCantidadActual }}
     >
       {children}
     </CartContext.Provider>
