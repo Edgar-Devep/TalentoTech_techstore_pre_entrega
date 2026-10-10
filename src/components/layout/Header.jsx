@@ -1,8 +1,10 @@
 import { Link, NavLink } from "react-router-dom";
 import { useCart } from "../context/useCart";
+import { FaShoppingCart } from "react-icons/fa";
 
 const Header = () => {
   const { getCartQuantity } = useCart();
+  const totalProductos = getCartQuantity();
 
   const getNavClass = ({isActive}) => `flex items-center px-4 md:text-lg ${isActive ? 'text-blue-500 font-extrabold' : 'text-gray-400'}`
   
@@ -18,9 +20,9 @@ const Header = () => {
         <NavLink to='/productos' className={getNavClass}>Productos</NavLink>
         <NavLink to='/ofertas' className={getNavClass}>Ofertas</NavLink>
         <NavLink to='/contactos' className={getNavClass}>Contactos</NavLink>
-        <NavLink to='/carrito' className="flex items-center text-base md:text-xl gap-1 relative">🛒
-        <span className="flex items-center justify-center text-center w-3 h-3 md:w-4 md:h-4 p-2 rounded-full bg-red-500 text-white text-xs absolute -top-1 -right-2">
-          {getCartQuantity()}
+        <NavLink to='/carrito' className="flex items-center text-base md:text-xl gap-1 relative"><FaShoppingCart className="text-gray-400"/>
+        <span className={`flex items-center justify-center text-center w-4 h-4 md:w-5 md:h-5 p-2 rounded-full text-white text-xs md:text-base absolute -top-1 -right-4 ${totalProductos > 0 ? "bg-green-500" : "bg-red-500" } `}>
+          {totalProductos}
         </span></NavLink>
       </nav>
     </header>    

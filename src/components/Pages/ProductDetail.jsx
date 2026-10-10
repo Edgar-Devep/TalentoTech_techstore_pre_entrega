@@ -20,7 +20,7 @@ const ProductDetail = ({ id, nombre, imagen, precio, stock, enOferta }) => {
       <p className="text-gray-400">Stock: {stock}</p>
       <button
         onClick={handleAgregar}
-        className="bg-blue-500 text-white px-4 py-1 rounded font-bold"
+        className="bg-blue-500 text-white px-4 py-1 rounded font-bold cursor-pointer"
       >
         Agregar
       </button>

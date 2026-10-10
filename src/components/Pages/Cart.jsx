@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { useCart } from "../context/useCart";
+import { RiDeleteBin5Line } from "react-icons/ri";
+import { FaPlus, FaMinus } from "react-icons/fa";
 
 const Cart = () => {
   const { cart, clearCart, getCartTotal } = useCart();
@@ -8,7 +10,8 @@ const Cart = () => {
     return (
       <div className="p-6 text-center">
         <h2 className="text-2xl font-bold text-white mb-4">Mi Carrito</h2>
-        <p className="text-gray-400">Todavía no agregaste productos al carrito.</p>
+        <p className="text-gray-400 mb-6">Todavía no agregaste productos al carrito.</p>
+        <Link to="/productos" className="bg-blue-500 text-white px-4 py-1 rounded font-bold">Ver Productos</Link>
       </div>
     );
   }
@@ -17,12 +20,11 @@ const Cart = () => {
     <div className="p-6 max-w-2xl mx-auto">
       <h2 className="text-2xl font-bold text-white mb-4 text-center">Mi Carrito</h2>
 
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-wrap justify-center gap-4 sm:flex-col">
         {cart.map((item) => (
           <div
             key={item.id}
-            className="flex items-center justify-between gap-4 bg-slate-800 rounded-lg p-4"
-          >
+            className="w-28 flex flex-col items-center text-center gap-2 bg-slate-800 rounded-lg p-3 sm:w-full sm:flex-row sm:justify-between sm:text-left">
             <Link to={`/productos/${item.id}`}>
             <img
               src={item.imagen}
@@ -30,24 +32,29 @@ const Cart = () => {
               className="w-16 h-16 object-contain rounded"
             />
             </Link>
-            <div className="flex-1 text-left">
+            <div className="flex gap-2 sm:flex-1 text-xs">
               <h3 className="font-bold text-white">{item.nombre}</h3>
-              <p className="text-sm text-gray-400">Cantidad: {item.quantity}</p>
+              <button className="text-sm"><RiDeleteBin5Line className="text-red-600 font-bold cursor-pointer"/></button>
             </div>
-            <p className="text-sky-400 font-bold">
+            <p className="text-sky-400 text-xs font-bold px-4">
               ${(item.precio * item.quantity).toLocaleString("es-AR")}
             </p>
+            <div className="flex items-center gap-2 text-xs">
+              <button><FaMinus className="text-sky-400 cursor-pointer" /></button>
+              <span className="text-white font-bold">{item.quantity}</span>
+              <button><FaPlus className="text-sky-400 cursor-pointer"/></button>
+            </div>
           </div>
         ))}
       </div>
 
-      <div className="flex items-center justify-between mt-6">
-        <p className="text-xl font-bold text-white">
+      <div className="flex items-center justify-center gap-5 md:justify-between mt-6 ">
+        <p className="text-base md:text-xl font-bold text-white">
           Total: ${getCartTotal().toLocaleString("es-AR")}
         </p>
         <button
           onClick={clearCart}
-          className="bg-red-500 text-white px-4 py-2 rounded font-bold"
+          className="bg-red-500 text-white px-2 py-1 rounded font-bold cursor-pointer"
         >
           Vaciar carrito
         </button>
