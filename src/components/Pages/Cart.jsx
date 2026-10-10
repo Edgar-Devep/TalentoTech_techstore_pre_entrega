@@ -30,19 +30,22 @@ const Cart = () => {
               src={item.imagen}
               alt={item.nombre}
               className="w-16 h-16 object-contain rounded"
+              title="Ver Detalles"
             />
             </Link>
             <div className="flex gap-2 sm:flex-1 text-xs">
               <h3 className="font-bold text-white">{item.nombre}</h3>
-              <button className="text-sm"><RiDeleteBin5Line className="text-red-600 font-bold cursor-pointer"/></button>
+              <button className="text-sm" title="Eliminar">
+                <RiDeleteBin5Line className="text-red-600 font-bold cursor-pointer"/>
+              </button>
             </div>
             <p className="text-sky-400 text-xs font-bold px-4">
               ${(item.precio * item.quantity).toLocaleString("es-AR")}
             </p>
             <div className="flex items-center gap-2 text-xs">
-              <button><FaMinus className="text-sky-400 cursor-pointer" /></button>
+              <button><FaMinus className="text-sky-400 cursor-pointer" title="Menos"/></button>
               <span className="text-white font-bold">{item.quantity}</span>
-              <button><FaPlus className="text-sky-400 cursor-pointer"/></button>
+              <button><FaPlus className="text-sky-400 cursor-pointer" title="Mas"/></button>
             </div>
           </div>
         ))}
