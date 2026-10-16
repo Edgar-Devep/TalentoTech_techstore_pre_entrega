@@ -4,7 +4,7 @@ import { RiDeleteBin5Line } from "react-icons/ri";
 import { FaPlus, FaMinus } from "react-icons/fa";
 
 const Cart = () => {
-  const { cart, clearCart, getCartTotal } = useCart();
+  const { cart, clearCart, getCartTotal, incrementarCantidad, decrementarCantidad, eliminarDelCarrito } = useCart();
 
   if (cart.length === 0) {
     return (
@@ -17,14 +17,14 @@ const Cart = () => {
   }
 
   return (
-    <div className="p-6 max-w-2xl mx-auto">
+    <div className="text-center p-6 max-w-2xl mx-auto">
       <h2 className="text-2xl font-bold text-white mb-4 text-center">Mi Carrito</h2>
 
       <div className="flex flex-wrap justify-center gap-4 sm:flex-col">
         {cart.map((item) => (
           <div
             key={item.id}
-            className="w-28 flex flex-col items-center text-center gap-2 bg-slate-800 rounded-lg p-3 sm:w-full sm:flex-row sm:justify-between sm:text-left">
+            className="w-28 flex flex-col items-center text-center gap-2 bg-slate-800 rounded-lg p-3 sm:w-full sm:flex-row sm:justify-between sm:text-left relative">
             <Link to={`/productos/${item.id}`}>
             <img
               src={item.imagen}
@@ -35,17 +35,17 @@ const Cart = () => {
             </Link>
             <div className="flex gap-2 sm:flex-1 text-xs">
               <h3 className="font-bold text-white">{item.nombre}</h3>
-              <button className="text-sm" title="Eliminar">
-                <RiDeleteBin5Line className="text-red-600 font-bold cursor-pointer"/>
-              </button>
+             <button onClick={() => eliminarDelCarrito(item.id)} className="text-sm absolute top-1 right-1 sm:static sm:top-auto sm:right-auto" title="Eliminar">
+              <RiDeleteBin5Line className="text-red-600 font-bold cursor-pointer"/>
+            </button>
             </div>
             <p className="text-sky-400 text-xs font-bold px-4">
               ${(item.precio * item.quantity).toLocaleString("es-AR")}
             </p>
             <div className="flex items-center gap-2 text-xs">
-              <button><FaMinus className="text-sky-400 cursor-pointer" title="Menos"/></button>
+              <button onClick={() => decrementarCantidad(item.id)}><FaMinus className="text-sky-400 cursor-pointer" title="Menos"/></button>
               <span className="text-white font-bold">{item.quantity}</span>
-              <button><FaPlus className="text-sky-400 cursor-pointer" title="Mas"/></button>
+              <button onClick={() => incrementarCantidad(item.id)}><FaPlus className="text-sky-400 cursor-pointer" title="Mas"/></button>
             </div>
           </div>
         ))}
@@ -62,6 +62,18 @@ const Cart = () => {
           Vaciar carrito
         </button>
       </div>
+        <div className="mt-6 flex justify-center">
+          <Link
+            to="/"
+            onClick={() => {
+              alert("Gracias por su compra");
+              clearCart();
+            }}
+            className="bg-blue-500 text-white px-4 py-1 rounded font-bold"
+          >
+            Finalizar Compra
+          </Link>
+        </div>
     </div>
   );
 };

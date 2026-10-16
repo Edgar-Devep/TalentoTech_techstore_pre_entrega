@@ -11,13 +11,9 @@ const ProductsListContainer = ({ soloOfertas = false }) => {
         if (!respuestaProductos.ok) {
           throw new Error("No llegó la respuesta de los productos");
         }
-        const datos = await respuestaProductos.json();
+        const datos = await respuestaProductos.json();        
+        setProductos(datos);
 
-        const productosFiltrados = soloOfertas
-          ? datos.filter((producto) => producto.enOferta === true)
-          : datos;
-
-        setProductos(productosFiltrados);
       } catch (error) {
         console.error("Error al cargar productos:", error);
       } finally {
@@ -25,11 +21,15 @@ const ProductsListContainer = ({ soloOfertas = false }) => {
       }
     };
     cargarProductos();
-  }, [soloOfertas]);
+  }, []);
+  
+  const productosVisibles = soloOfertas
+    ? productos.filter((producto) => producto.enOferta === true)
+    : productos;
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 gap-4 p-6">
-      {productos.map((producto) => (
+      {productosVisibles.map((producto) => (
         <Products key={producto.id} {...producto} />
       ))}
     </div>

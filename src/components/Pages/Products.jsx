@@ -12,7 +12,7 @@ const Products = ({ id, nombre, imagen }) => {
             className="max-w-full max-h-full object-contain"
           />
         </div>
-        <div className="p-2">
+        <div className="p-2 flex justify-center">
           <h3 className="font-bold text-white">{nombre}</h3>
         </div>
       </Link>
