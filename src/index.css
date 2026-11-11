@@ -7,3 +7,7 @@
 .p-informacion-ruta {
   @apply md:text-xl text-gray-400
 }
+
+.inputClase {
+  @apply w-full px-3 py-2 rounded bg-slate-700 text-white placeholder-gray-400
+}

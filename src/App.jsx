@@ -2,9 +2,10 @@ import { Route, Routes } from 'react-router-dom'
 import Layout from './components/layout/Layout'
 import Home from './components/Pages/Home'
 import ProductsListContainer from './components/Pages/ProductsListContainer'
+import ProductDetailContainer from './components/Pages/ProductDetailContainer'
 import Contactos from './components/Pages/Contactos'
 import Cart from './components/Pages/Cart'
-import ProductDetailContainer from './components/Pages/ProductDetailContainer'
+import Panel from './admin/Panel'
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
           <Route path='/ofertas' element={<ProductsListContainer soloOfertas={true} />} />
           <Route path='/contactos' element={<Contactos />} />  
           <Route path='/carrito' element={<Cart />} />
+          <Route path='/panel' element={<Panel />} />
         </Route>
       </Routes>
   )

@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../../firebase/config";
 import ProductDetail from "./ProductDetail";
 
 const ProductDetailContainer = () => {
@@ -8,22 +10,19 @@ const ProductDetailContainer = () => {
   const [cargando, setCargando] = useState(true);
 
   useEffect(() => {
-    const cargarProductos = async () => {
+    const cargarProducto = async () => {
       try {
-        const respuesta = await fetch("/data/productos.json");
-        if (!respuesta.ok) {
-          throw new Error("No llegó la respuesta de los productos");
+        const resultado = await getDoc(doc(db, "productos", id));
+        if (resultado.exists()) {
+          setDetailsProduct({ ...resultado.data(), id: resultado.id });
         }
-        const data = await respuesta.json();
-        const encontrado = data.find((pro) => pro.id === parseInt(id));
-        setDetailsProduct(encontrado);
       } catch (error) {
         console.error("Error al cargar el producto:", error);
       } finally {
         setCargando(false);
       }
     };
-    cargarProductos();
+    cargarProducto();
   }, [id]);
 
   if (cargando) {
@@ -31,9 +30,7 @@ const ProductDetailContainer = () => {
   }
 
   if (!detailsProduct) {
-    return (
-      <p className="text-white text-center p-6">Producto no encontrado.</p>
-    );
+    return <p className="text-white text-center p-6">Producto no encontrado.</p>;
   }
 
   return <ProductDetail {...detailsProduct} />;
