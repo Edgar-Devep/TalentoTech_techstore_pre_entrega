@@ -14,9 +14,9 @@ const Panel = () => {
   const cargarProductos = async () => {
     try {
       const resultado = await getDocs(collection(db, "productos"));
-      const datos = resultado.docs.map((d) => ({
-        ...d.data(),
-        id: d.id,
+      const datos = resultado.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
       }));
       setProductos(datos);
     } catch (error) {

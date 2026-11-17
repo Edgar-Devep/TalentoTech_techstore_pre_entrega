@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom'
 import Layout from './components/layout/Layout'
 import Home from './components/Pages/Home'
+import Login from './components/Pages/Login'
 import ProductsListContainer from './components/Pages/ProductsListContainer'
 import ProductDetailContainer from './components/Pages/ProductDetailContainer'
 import Contactos from './components/Pages/Contactos'
@@ -11,6 +12,7 @@ function App() {
 
   return (
       <Routes>
+        <Route path='/login' element={<Login />} />
         <Route path='/' element={<Layout />}>
           <Route index element={<Home />} />  
           <Route path='/productos' element={<ProductsListContainer />} />  

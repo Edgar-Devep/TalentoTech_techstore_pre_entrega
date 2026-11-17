@@ -2,22 +2,28 @@ import { useState, useEffect } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase/config";
 import Products from "./Products";
+import { useSearch } from "../context/SearchContext";
 
 const ProductsListContainer = ({ soloOfertas = false }) => {
   const [productos, setProductos] = useState([]);
   const [cargando, setCargando] = useState(true);
+  const { busqueda } = useSearch();
+
+const productosVistos = productos.filter((pro) =>
+  pro.nombre.toLowerCase().includes(busqueda.trim().toLowerCase())
+);
+
+console.log(productosVistos);
 
   useEffect(() => {
     const cargarProductos = async () => {
       try {
         const resultado = await getDocs(collection(db, "productos"));
-        console.log(resultado);
         
         const datos = resultado.docs.map((doc) => ({
           ...doc.data(),
           id: doc.id,
         }));
-        console.log(datos);
 
         const productosFiltrados = soloOfertas
           ? datos.filter((producto) => producto.enOferta === true)
@@ -46,9 +52,17 @@ const ProductsListContainer = ({ soloOfertas = false }) => {
     );
   }
 
+  if (productosVistos.length === 0) {
+  return (
+    <p className="text-gray-300 text-center p-6">
+      No encontramos productos para "{busqueda}".
+    </p>
+  );
+}
+
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 gap-4 p-6">
-      {productos.map((producto) => (
+      {productosVistos.map((producto) => (
         <Products key={producto.id} {...producto} />
       ))}
     </div>
