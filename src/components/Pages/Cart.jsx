@@ -3,11 +3,14 @@ import { RiDeleteBin5Line } from "react-icons/ri";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useCart } from "../context/useCart";
+import { useAuth } from "../context/useAuth";
 
 const Cart = () => {
   const [compraFinalizada, setCompraFinalizada] = useState(false);
   const [segundos, setSegundos] = useState(5);
+
   const { cart, clearCart, getCartTotal, incrementarCantidad, decrementarCantidad, eliminarDelCarrito } = useCart();
+  const { user } = useAuth();
   const navigate = useNavigate();
 
 
@@ -129,12 +132,17 @@ useEffect(() => {
           </button>
         </div>
         <div className="mt-6 flex justify-center">
-          <button
-            onClick={handleFinalizar}
-            className="bg-blue-500 text-white px-4 py-1 rounded font-bold cursor-pointer"
-          >
-            Finalizar Compra
-          </button>
+          
+          {user ? (
+            <button
+              onClick={handleFinalizar}
+              className="bg-blue-500 text-white px-4 py-1 rounded font-bold cursor-pointer"
+            >
+              Finalizar Compra
+            </button>
+          ) : 
+          <p className="text-red-500/80 font-bold tracking-widest">Debes Iniciar Sesion Para Finalizar la Compra</p>
+        }
         </div>
       </div>
     </>

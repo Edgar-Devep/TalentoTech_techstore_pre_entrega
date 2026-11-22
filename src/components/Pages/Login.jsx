@@ -1,14 +1,17 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase/config";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/useAuth";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [verPassword, setVerPassword] = useState(false);
   const [cargando, setCargando] = useState(false);
+  
   const navigate = useNavigate();
+  const { user, login } = useAuth(); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,8 +24,8 @@ const Login = () => {
 
     try {
       setCargando(true);
-      await signInWithEmailAndPassword(auth, email.trim(), password);
-      navigate("/panel");
+      await login(email.trim(), password);
+      navigate("/");
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
       setError("Correo o contraseña incorrectos.");
@@ -30,6 +33,8 @@ const Login = () => {
       setCargando(false);
     }
   };
+
+  if (user) return <Navigate to="/" replace />;
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4 sm:p-8">
@@ -50,14 +55,24 @@ const Login = () => {
           className="inputLogin"
         />
 
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Contraseña"
-          autoComplete="current-password"
-          className="inputLogin"
-        />
+        <div className="relative">
+          <input
+            type={verPassword ? "text" : "password"}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Contraseña"
+            autoComplete="current-password"
+            className="inputLogin pr-12"
+          />
+          <button
+            type="button"
+            onClick={() => setVerPassword(!verPassword)}
+            aria-label={verPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white cursor-pointer"
+          >
+            {verPassword ? <FaEyeSlash /> : <FaEye />}
+          </button>
+        </div>
 
         {error && <p className="text-red-400 text-sm md:text-base">{error}</p>}
 
@@ -68,6 +83,15 @@ const Login = () => {
         >
           {cargando ? "Ingresando..." : "Ingresar"}
         </button>
+        <p className="text-gray-300 text-center text-sm">
+          ¿No tenés cuenta? <Link to="/registro" className="text-blue-400">Registrate</Link>
+        </p>
+        <ul className="text-white font-bold">
+        <ol>admin@gmail.com</ol>
+        <ol>admin123</ol>
+        <ol>usuario@gmail.com</ol>
+        <ol>usuario123</ol>
+        </ul>
       </form>
     </div>
   );

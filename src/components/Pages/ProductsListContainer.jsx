@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase/config";
 import Products from "./Products";
-import { useSearch } from "../context/SearchContext";
+import { useSearch } from "../context/useSearch";
 
 const ProductsListContainer = ({ soloOfertas = false }) => {
   const [productos, setProductos] = useState([]);
