@@ -2,13 +2,13 @@
 
 Tienda online hecha con React, Firebase y Tailwind CSS.
 
-**Deploy:** https://tu-url.vercel.app
+**Deploy:** [https://tu-url.vercel.app](https://talento-tech-techstore-pre-entrega.vercel.app/)
 
 ## Acceso de administrador
 - Usuario: admin@gmail.com
 - Contraseña: admin123
-- usuario@gmail.com
-- usuario123
+- Usuario: usuario@gmail.com
+- Contraseña: usuario123
 
 ## Cómo correrlo
 1. `npm install`
