@@ -7,13 +7,6 @@ import { GrUserAdmin } from "react-icons/gr";
 import { FaShoppingCart, FaTimes } from "react-icons/fa";
 import { RiLogoutCircleLine, RiLoginCircleLine } from "react-icons/ri";
 
-// preguntar lo de firebase 
-// lo de la protecttion
-// q se boore lo de carrito 
-// preguntar lo de suir las imagenes
-
-
-
 const Header = () => {
   const { busqueda, setBusqueda } = useSearch();
   const { getCartQuantity } = useCart();

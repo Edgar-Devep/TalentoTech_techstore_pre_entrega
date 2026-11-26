@@ -86,12 +86,6 @@ const Login = () => {
         <p className="text-gray-300 text-center text-sm">
           ¿No tenés cuenta? <Link to="/registro" className="text-blue-400">Registrate</Link>
         </p>
-        <ul className="text-white font-bold">
-        <ol>admin@gmail.com</ol>
-        <ol>admin123</ol>
-        <ol>usuario@gmail.com</ol>
-        <ol>usuario123</ol>
-        </ul>
       </form>
     </div>
   );

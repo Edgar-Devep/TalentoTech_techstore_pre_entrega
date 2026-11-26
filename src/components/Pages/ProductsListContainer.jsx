@@ -13,8 +13,6 @@ const productosVistos = productos.filter((pro) =>
   pro.nombre.toLowerCase().includes(busqueda.trim().toLowerCase())
 );
 
-console.log(productosVistos);
-
   useEffect(() => {
     const cargarProductos = async () => {
       try {
