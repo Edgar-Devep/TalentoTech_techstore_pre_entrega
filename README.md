@@ -2,7 +2,7 @@
 
 Tienda online hecha con React, Firebase y Tailwind CSS.
 
-**Deploy:** (https://talento-tech-techstore-pre-entrega.vercel.app/)
+**Deploy:** https://talento-tech-techstore-pre-entrega.vercel.app/
 
 ## Acceso de administrador
 - Usuario: admin@gmail.com
